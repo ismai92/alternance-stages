@@ -1,0 +1,10 @@
+{
+  "name": "Alternance & Stages",
+  "short_name": "Alternance",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f5fa",
+  "theme_color": "#2a46c9",
+  "lang": "fr",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

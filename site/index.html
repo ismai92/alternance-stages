@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Alternance & Stages</title>
+<meta name="description" content="Toutes les offres d’alternance et de stage en France, gratuitement, mises à jour toutes les 30 minutes.">
+<meta name="theme-color" content="#2a46c9">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@600;700;800&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script src="config.js"></script>
+</head>
+<body>
+<a class="skip" href="#results">Aller aux offres</a>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="brand" href="#" data-tab="offres"><span class="mark" aria-hidden="true"></span><span id="app-name">Alternance & Stages</span></a>
+    <nav class="tabs" aria-label="Sections">
+      <button class="tab" data-tab="offres" aria-current="page">Offres</button>
+      <button class="tab" data-tab="suivi">Mon suivi <span class="count" id="n-suivi" hidden></span></button>
+      <button class="tab" data-tab="alertes">Alertes <span class="count hot" id="n-alertes" hidden></span></button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- OFFRES -->
+  <section id="view-offres" class="view">
+    <div class="hero">
+      <h1>Toutes les offres d’alternance et de stage, au même endroit.</h1>
+      <p class="sub" id="stats">Chargement des offres…</p>
+    </div>
+
+    <form class="search" id="search" role="search" autocomplete="off">
+      <div class="field grow">
+        <label for="f-q">Métier, mot-clé ou entreprise</label>
+        <input type="search" id="f-q" placeholder="ex. réseau, boulanger, comptable, mairie">
+      </div>
+      <div class="field">
+        <label for="f-loc">Où</label>
+        <select id="f-loc"></select>
+      </div>
+      <div class="field">
+        <label for="f-kind">Type</label>
+        <select id="f-kind">
+          <option value="all">Alternance et stage</option>
+          <option value="0">Alternance</option>
+          <option value="1">Stage</option>
+        </select>
+      </div>
+      <details class="more">
+        <summary>Plus de filtres</summary>
+        <div class="more-in">
+          <div class="field">
+            <label for="f-dom">Domaine</label>
+            <select id="f-dom"></select>
+          </div>
+          <div class="field">
+            <label for="f-lvl">Niveau visé</label>
+            <select id="f-lvl">
+              <option value="0">Tous niveaux</option>
+              <option value="3">CAP, BEP</option>
+              <option value="4">Bac</option>
+              <option value="5">Bac+2 (BTS, BUT 2)</option>
+              <option value="6">Bac+3/4 (Licence, Bachelor)</option>
+              <option value="7">Bac+5 (Master, ingénieur)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-since">Publiées</label>
+            <select id="f-since">
+              <option value="0">Depuis toujours</option>
+              <option value="1">Dernières 24 h</option>
+              <option value="3">3 derniers jours</option>
+              <option value="7">7 derniers jours</option>
+              <option value="30">30 derniers jours</option>
+            </select>
+          </div>
+        </div>
+      </details>
+    </form>
+
+    <div class="resbar">
+      <p id="rescount" aria-live="polite"></p>
+      <button class="btn ghost" id="save-alert" type="button">Créer une alerte pour cette recherche</button>
+    </div>
+    <ol class="list" id="results"></ol>
+    <div class="center"><button class="btn" id="more" type="button" hidden>Voir plus d’offres</button></div>
+  </section>
+
+  <!-- SUIVI -->
+  <section id="view-suivi" class="view" hidden>
+    <div class="hero small">
+      <h1>Mon suivi de candidatures</h1>
+      <p class="sub">Les offres que tu as gardées, avec leur statut. Tout reste sur ce téléphone ou cet ordinateur : aucun compte, aucune donnée envoyée.</p>
+    </div>
+    <div class="chips" id="suivi-filter" role="group" aria-label="Filtrer par statut"></div>
+    <ol class="list" id="suivi-list"></ol>
+    <div class="center"><button class="btn ghost" id="export" type="button">Copier mon suivi (texte)</button></div>
+  </section>
+
+  <!-- ALERTES -->
+  <section id="view-alertes" class="view" hidden>
+    <div class="hero small">
+      <h1>Mes alertes</h1>
+      <p class="sub">Enregistre une recherche depuis l’onglet Offres. À chaque visite, tu vois ici combien de nouvelles offres y correspondent.</p>
+    </div>
+    <ol class="alerts" id="alert-list"></ol>
+  </section>
+</main>
+
+<footer class="foot wrap">
+  <p id="sources-line"></p>
+  <p>Service gratuit et indépendant. Les offres proviennent de sources publiques officielles (API La bonne alternance, API France Travail) et des pages carrière des entreprises. Pour postuler, tu es redirigé vers le site d’origine de l’offre.</p>
+</footer>
+
+<dialog id="detail" aria-labelledby="d-title">
+  <div class="dlg">
+    <button class="close" id="d-close" type="button" aria-label="Fermer">×</button>
+    <div id="d-body"></div>
+  </div>
+</dialog>
+
+<div id="toast" role="status" aria-live="polite" hidden></div>
+<script src="app.js"></script>
+</body>
+</html>
